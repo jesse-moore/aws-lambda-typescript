@@ -1,0 +1,56 @@
+{
+    "configurations": [
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "invokeTarget": {
+                "target": "template",
+                "logicalId": "HelloWorldFunction",
+                "templatePath": "template.yaml"
+            },
+            "lambda": {
+                "runtime": "nodejs14.x"
+            },
+            "sam": {
+                "containerBuild": false,
+                "skipNewImageCheck": false
+            },
+            "api": {
+                "httpMethod": "get"
+            },
+            "name": "function"
+        },
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "invokeTarget": {
+                "target": "code",
+                "lambdaHandler": "app.lambdaHandler",
+                "projectRoot": "hello-world"
+            },
+            "lambda": {
+                "runtime": "nodejs14.x"
+            },
+            "sam": {
+                "containerBuild": false,
+                "skipNewImageCheck": false
+            },
+            "api": {
+                "httpMethod": "get"
+            },
+            "name": "helloWorld"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to SAM CLI",
+            "address": "localhost",
+            "port": 8065,
+            "localRoot": "${workspaceRoot}/hello-world",
+            "remoteRoot": "/var/task",
+            "protocol": "inspector",
+            "stopOnEntry": false,
+            // "outFiles": ["${workspaceFolder}/lambda/hello-world/built/**/*.js"]
+        }
+    ]
+}

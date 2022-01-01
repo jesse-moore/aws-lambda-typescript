@@ -14,8 +14,8 @@ The code for this application will differ based on the runtime, but the path to 
 
 AWS Toolkit For Visual Studio Code supports local debugging for serverless applications through VS Code's debugger. Since this application was created by the AWS Toolkit, launch configurations for all included handlers have been generated and can be found in the menu next to the Run button:
 
-* weatherAPI:HelloWorldFunction (nodejs14.x)
-* API weatherAPI:HelloWorldFunction (nodejs14.x)
+* lambda-nodejs14.x:HelloWorldFunction (nodejs14.x)
+* API lambda-nodejs14.x:HelloWorldFunction (nodejs14.x)
 
 You can debug the Lambda handlers locally by adding a breakpoint to the source file, then running the launch configuration. This works by using Docker on your local machine.
 
