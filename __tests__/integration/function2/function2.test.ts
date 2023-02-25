@@ -1,11 +1,7 @@
-import { APIGatewayEvent } from "aws-lambda";
+import axios from "axios";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import event from "../../events/event.json";
-
-type APIError = string | Error | null | undefined;
 
 describe("Function 2 tests", function () {
-  const gatewayEvent = event as unknown as APIGatewayEvent;
   beforeEach(() => {
     // tell vitest we use mocked time
   });
@@ -15,17 +11,16 @@ describe("Function 2 tests", function () {
   });
 
   it("verifies successful response", async () => {
-    expect(0).toBe(1);
-    // const response = await handler(gatewayEvent, undefined);
-    // expect(response).to.be.an("object");
-    // expect(response.statusCode).to.equal(200);
-    // expect(response.body).to.be.an("string");
+    const function2URI = process.env.FUNCTION2_URI;
+    expect(function2URI).toBeTypeOf("string")
 
-    // const body = JSON.parse(response.body);
-    // expect(body).toHaveProperty("message");
-    // expect(body.message).toBe("Function 2");
+    const functionResponse = await axios.get(function2URI as string);
+    
+    expect(functionResponse.status).to.equal(200);
+    
+    const data = await functionResponse.data;
 
-    // expect(body).toHaveProperty("location");
-    // expect(body.location).to.be.an("string");
+    expect(data).toHaveProperty("location");
+    expect(data.location).to.be.an("string");
   });
 });

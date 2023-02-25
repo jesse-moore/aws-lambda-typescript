@@ -3,9 +3,9 @@ import axios from "axios";
 
 let response: APIGatewayProxyResult;
 
-export const handler = async (event: APIGatewayEvent, context?: Context): Promise<APIGatewayProxyResult> => {
-  // console.log(`Event: ${JSON.stringify(event, null, 2)}`);
-  // console.log(`Context: ${JSON.stringify(context, null, 2)}`);
+export const lambdaHandler = async (event: APIGatewayEvent, context?: Context): Promise<APIGatewayProxyResult> => {
+  console.log(`Event: ${JSON.stringify(event, null, 2)}`);
+  console.log(`Context: ${JSON.stringify(context, null, 2)}`);
   try {
     const ret = await axios.get("http://checkip.amazonaws.com/");
     const data = await ret.data;
